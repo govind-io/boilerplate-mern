@@ -40,3 +40,8 @@ export class TaskAlreadSharedError extends ApplicationError {
     this.httpStatusCode = HttpStatusCodes.BAD_REQUEST;
   }
 }
+export type PageParams = { page: number; size: number };
+
+export type GetAllSharedTaskParams = {
+  accountId: string;
+} & PageParams;
