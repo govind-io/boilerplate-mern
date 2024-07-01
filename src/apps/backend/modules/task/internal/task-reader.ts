@@ -16,6 +16,7 @@ export default class TaskReader {
       account: params.accountId,
       active: true,
     });
+    
     if (!taskDb) {
       throw new TaskNotFoundError(params.taskId);
     }
