@@ -7,6 +7,7 @@ import {
   SerialiseSharedTask,
   SharedTask,
   SharedTaskAccountNotFound,
+  TaskAlreadSharedError,
 } from './types';
 
 export default class SharedTaskService {
@@ -38,7 +39,9 @@ export default class SharedTaskService {
       task: taskId,
     });
 
-    Logger.debug(`isExisting: ${isExisting}`);
+    if(isExisting.length>0){
+      throw new TaskAlreadSharedError(taskId,accountId)
+    }
 
     return await SharedTaskWriter.createSharedTask(params);
   }

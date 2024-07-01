@@ -1,7 +1,8 @@
-import { SerialiseSharedTask, SharedTask } from "../types";
+import { SerialiseSharedTask, SharedTask } from '../types';
+import SharedTaskUtils from './shared-task-utils';
 
-
-export const serializeTaskAsJSON = (sharedTask: SharedTask): SerialiseSharedTask => ({
- task:sharedTask.task,
- account:sharedTask.account
-});
+export const serializeSharedTaskAsJSON = async (
+  sharedTask: SharedTask,
+): Promise<SerialiseSharedTask> => {
+  return await SharedTaskUtils.convertSharedTaskDBToSharedTask(sharedTask);
+};

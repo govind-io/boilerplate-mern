@@ -8,6 +8,9 @@ export default class SharedTaskWriter {
   ): Promise<SerialiseSharedTask> {
     const createdTask = await SharedTaskRepository.create(params);
 
-    return SharedTaskUtils.convertSharedTaskDBToSharedTask(createdTask);
+    return await SharedTaskUtils.convertSharedTaskDBToSharedTask({
+      task: createdTask.task.toString(),
+      account: createdTask.account.toString(),
+    });
   }
 }
