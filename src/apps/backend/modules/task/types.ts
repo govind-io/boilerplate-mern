@@ -14,6 +14,10 @@ export type GetAllTaskParams = {
   size?: number;
 };
 
+export type GetTaskParam = {
+  taskId:string
+}
+
 export type GetTaskParams = {
   accountId: string;
   taskId: string;
