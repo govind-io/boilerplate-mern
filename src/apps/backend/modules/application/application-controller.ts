@@ -23,10 +23,11 @@ export const applicationController =
     Promise.resolve(fnReturn).catch(next);
   };
 
-export interface Request<T = unknown, Q = any> extends ExpressReq {
+export interface Request<T = unknown> extends ExpressReq {
   body: T;
   accountId?: string;
-  query: Q;
+  //to-do use generic type for query as well
+  query: any;
 }
 
 export interface Response<T = unknown> extends ExpressRes {

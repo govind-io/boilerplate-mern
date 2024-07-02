@@ -33,12 +33,9 @@ export class SharedTaskController {
   );
 
   getSharedTasks = applicationController(
-    async (
-      req: Request<{}, PageParams>,
-      res: Response<SerialiseSharedTask[]>,
-    ) => {
-      const page = +req.query.page;
-      const size = +req.query.size;
+    async (req: Request<{}>, res: Response<SerialiseSharedTask[]>) => {
+      const page = +(req.query as PageParams).page;
+      const size = +(req.query as PageParams).size;
       const params: GetAllSharedTaskParams = {
         accountId: req.accountId,
         page,
