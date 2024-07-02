@@ -4,6 +4,7 @@ import {
   CreateTaskParams,
   DeleteTaskParams,
   GetAllTaskParams,
+  GetTaskParam,
   GetTaskParams,
   Task,
   UpdateTaskParams,
@@ -28,5 +29,9 @@ export default class TaskService {
 
   public static async getTasksForAccount(params: GetAllTaskParams): Promise<Task[]> {
     return TaskReader.getTasksForAccount(params);
+  }
+
+  public static async getTaskById(params:GetTaskParam):Promise<Task>{
+    return TaskReader.getTaskById(params)
   }
 }

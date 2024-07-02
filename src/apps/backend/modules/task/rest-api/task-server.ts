@@ -5,6 +5,7 @@ import {
   Response,
 } from '../../application';
 import { CommentsServer } from '../../comments';
+import { SharedTaskServer } from '../../shared-tasks';
 
 import TaskRouter from './task-router';
 
@@ -12,6 +13,7 @@ export default class TaskServer extends ApplicationServer {
   configure(): void {
     const { server } = this;
     const router = new TaskRouter();
+    const sharedTaskServer = new SharedTaskServer();
 
     const commentsServer = new CommentsServer();
 
@@ -27,6 +29,7 @@ export default class TaskServer extends ApplicationServer {
 
     //each comments belongs to a specific task id
     server.use('/tasks/:id', captureTaskIdMiddleware, commentsServer.server);
+    server.use('/tasks', sharedTaskServer.server);
     server.use('/tasks', router.router);
   }
 }
