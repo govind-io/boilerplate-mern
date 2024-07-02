@@ -9,6 +9,6 @@ export default class CommentsRouter extends ApplicationRouter {
 
     router.use(accessAuthMiddleware);
 
-    router.get('/', ctrl.hello);
+    router.post('/', ctrl.addComment);
   }
 }

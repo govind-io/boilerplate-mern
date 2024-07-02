@@ -23,9 +23,8 @@ export const applicationController =
     Promise.resolve(fnReturn).catch(next);
   };
 
-export interface Request<T = unknown, P = any> extends ExpressReq {
+export interface Request<T = unknown> extends ExpressReq {
   body: T;
-  params: P;
   accountId?: string;
   taskId?: string;
 }

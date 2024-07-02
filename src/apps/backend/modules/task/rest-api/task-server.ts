@@ -17,7 +17,7 @@ export default class TaskServer extends ApplicationServer {
 
     // Middleware to capture the :id parameter and pass it down as unable to capture the .id param inside controller function of comments
     const captureTaskIdMiddleware = (
-      req: Request<{}, { id: string }>,
+      req: Request,
       _: Response,
       next: NextFunc,
     ) => {
