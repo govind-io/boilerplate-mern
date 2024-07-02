@@ -3,6 +3,7 @@ import { HttpStatusCodes } from '../../http';
 import { Logger } from '../../logger';
 import SharedTaskService from '../shared-task-service';
 import {
+  CanNotShareTaskToSelf,
   GetAllSharedTaskParams,
   PageParams,
   SerialiseSharedTask,
@@ -15,9 +16,14 @@ export class SharedTaskController {
     async (req: Request<SharedTask>, res: Response) => {
       const { task: taskId, account: accountId } = req.body;
 
+      if (req.accountId === accountId) {
+        throw new CanNotShareTaskToSelf();
+      }
+
       const sharedTask = await SharedTaskService.shareTask({
         task: taskId,
         account: accountId,
+        selfAccountId: req.accountId,
       });
 
       Logger.debug(`created shared task entery: ${JSON.stringify(sharedTask)}`);
