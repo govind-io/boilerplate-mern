@@ -26,6 +26,7 @@ export const applicationController =
 export interface Request<T = unknown> extends ExpressReq {
   body: T;
   accountId?: string;
+  taskId?: string;
   //to-do use generic type for query as well
   query: any;
 }

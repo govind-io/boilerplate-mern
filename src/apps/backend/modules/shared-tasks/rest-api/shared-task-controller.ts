@@ -6,7 +6,6 @@ import {
   CanNotShareTaskToSelf,
   GetAllSharedTaskParams,
   PageParams,
-  SerialiseSharedTask,
   SharedTask,
 } from '../types';
 import SharedTaskUtils from './shared-task-utils';
@@ -33,7 +32,7 @@ export class SharedTaskController {
   );
 
   getSharedTasks = applicationController(
-    async (req: Request<{}>, res: Response<SerialiseSharedTask[]>) => {
+    async (req: Request<{}>, res: Response) => {
       const page = +(req.query as PageParams).page;
       const size = +(req.query as PageParams).size;
       const params: GetAllSharedTaskParams = {
