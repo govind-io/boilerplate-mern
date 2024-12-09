@@ -4,6 +4,7 @@ import {
   Task,
   TaskNotFoundError,
   PaginationParams,
+  GetTaskParam,
 } from '../types';
 
 import TaskRepository from './store/task-repository';
@@ -16,6 +17,7 @@ export default class TaskReader {
       account: params.accountId,
       active: true,
     });
+    
     if (!taskDb) {
       throw new TaskNotFoundError(params.taskId);
     }
@@ -45,4 +47,15 @@ export default class TaskReader {
 
     return tasksDb.map((taskDb) => TaskUtil.convertTaskDBToTask(taskDb));
   }
+
+  public static async getTaskById(params:GetTaskParam){
+    const task=await TaskRepository.findOne({_id:params.taskId})
+
+    if(!task){
+      throw new TaskNotFoundError(params.taskId)
+    }
+
+    return TaskUtil.convertTaskDBToTask(task)
+  }
+
 }
